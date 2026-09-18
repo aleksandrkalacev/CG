@@ -12,23 +12,38 @@ public class DrawingPanel extends JPanel implements ActionListener {
     private Timer timer;
     private int ticksFromStart = 0;
 
-    private Clock clock;
+    private Clock clock1;
+    private Clock clock2;
+    private Clock clock3;
 
     public DrawingPanel(final int height, final int width,final int timerDelay){
         this.PANEL_HEIGHT = height;
         this.PANEL_WIDTH = width;
         this.TIMER_DELAY = timerDelay;
 
+
+
         timer = new Timer(timerDelay,this);
 
-        this.clock = new Clock( getWidth()/2,getHeight()/2,400,400);
+        this.clock1  = new Clock( PANEL_WIDTH+ 850,PANEL_HEIGHT/2,400,400, "#b67b54" );
+        this.clock2  = new Clock( PANEL_WIDTH + 850 + 800,PANEL_HEIGHT/2,400,400, "#954535" );
+        this.clock3 = new Clock( PANEL_WIDTH + 850 - 800,PANEL_HEIGHT/2,400,400, "#7B3F00" );
+
         timer.start();
     }
 
     public void paint(final Graphics gr){
         super.paint(gr);
-        clock.setX(getWidth()/2);
-        clock.draw(gr);
+
+        //фон
+        gr.setColor(Color.decode("#c5c09b"));
+        gr.fillRect(0,0, gr.getClipBounds().width, gr.getClipBounds().height);
+
+        clock1.draw(gr);
+
+        clock2.draw(gr);
+
+        clock3.draw(gr);
     }
 
     @Override
