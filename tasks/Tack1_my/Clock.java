@@ -87,6 +87,8 @@ public class Clock {
 
         int stLen = 130;
 
+
+        //минутная
         int minLen = 100;
         int min = (int) ((System.currentTimeMillis()/(1000 * 60)) % 60);
         double minAngle = (min * 6 * Math.PI/180) - Math.PI/2;
@@ -96,16 +98,11 @@ public class Clock {
         g.setStroke(new BasicStroke(4.0f));
         g.drawLine(stX, stY, endXMin, endYMin);
 
-
-
-
-
-
         g.setStroke(new BasicStroke(4.0f));
         g.setColor(Color.RED);
 
 
-
+        //секундная
         int sec = (int) ((System.currentTimeMillis()/1000) % 60);
         double angle = (sec * 6 * Math.PI/180) - Math.PI/2;
         int endX = (int) (stX + stLen * Math.cos(angle));
@@ -114,14 +111,21 @@ public class Clock {
 
         g.setStroke(new BasicStroke(4.0f));
         g.setColor(Color.RED);
-
-
-
-
-
         g.drawLine(stX, stY, endX, endY);
-        g.setColor(Color.green);
-        g.drawLine(stX, stY, stX-50, stY-50);
+
+
+
+        //часовая
+        int hourLen = 60;
+        int hour = (int) ((System.currentTimeMillis()/(1000 * 60 * 60)) % 60);
+        double hourAngle = (hour * 6 * Math.PI/180) - Math.PI/2;
+        int endXhour = (int) (stX + hourLen * Math.cos(hourAngle));
+        int endYhour = (int) (stY + hourLen * Math.sin(hourAngle));
+
+        g.setColor(Color.black);
+        g.drawLine(stX, stY, endXhour, endYhour);
+
+
 
         g.fillOval(stX - 8, stY - 8, 16, 16);
         g.setStroke(new BasicStroke(1.0f));
