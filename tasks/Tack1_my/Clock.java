@@ -86,17 +86,41 @@ public class Clock {
         g.drawString("9", stX - 130, stY + g.getFontMetrics().getAscent() / 3);
 
         int stLen = 130;
-        int sec = (int) ((System.currentTimeMillis()/1000) % 60);
-        double angle = (sec * 6 * Math.PI/180) - Math.PI/2;
 
-        int endX = (int) (stX + stLen * Math.cos(angle));
-        int endY = (int) (stY + stLen * Math.sin(angle));
+        int minLen = 100;
+        int min = (int) ((System.currentTimeMillis()/(1000 * 60)) % 60);
+        double minAngle = (min * 6 * Math.PI/180) - Math.PI/2;
+        int endXMin = (int) (stX + minLen * Math.cos(minAngle));
+        int endYMin = (int) (stY + minLen * Math.sin(minAngle));
+
+        g.setStroke(new BasicStroke(4.0f));
+        g.drawLine(stX, stY, endXMin, endYMin);
+
+
+
+
+
 
         g.setStroke(new BasicStroke(4.0f));
         g.setColor(Color.RED);
 
+
+
+        int sec = (int) ((System.currentTimeMillis()/1000) % 60);
+        double angle = (sec * 6 * Math.PI/180) - Math.PI/2;
+        int endX = (int) (stX + stLen * Math.cos(angle));
+        int endY = (int) (stY + stLen * Math.sin(angle));
+
+
+        g.setStroke(new BasicStroke(4.0f));
+        g.setColor(Color.RED);
+
+
+
+
+
         g.drawLine(stX, stY, endX, endY);
-        g.setColor(Color.BLACK);
+        g.setColor(Color.green);
         g.drawLine(stX, stY, stX-50, stY-50);
 
         g.fillOval(stX - 8, stY - 8, 16, 16);
